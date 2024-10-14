@@ -9,6 +9,7 @@ $storage_bucket = null;
 $app_id = null;
 $api_key = null;
 
+// add json files to search query
 $search_results = glob('./uploads/*');
 
 for ($i = 0; $i < count($search_results); $i++)
@@ -40,7 +41,10 @@ for ($i = 0; $i < count($search_results); $i++)
 	<link rel="stylesheet" type="text/css" href="./css/font-awesome.css">
 	<title>Firebase Sign In</title>
 	<style>
-		body { height: 100vh; }
+		body
+		{
+			height: 100vh;
+		}
 		#deleteAccountMessageBox,
 		#projectValidationWrapper,
 		#signInLoader,
@@ -48,9 +52,13 @@ for ($i = 0; $i < count($search_results); $i++)
 		#emailError,
 		#passwordError,
 		#submitButton
-		{ display: none; }
+		{
+			display: none;
+		}
 		#deleteAccountFormCard
-		{ display: block; }
+		{
+			display: block;
+		}
 	</style>
 	<script type="module">
 		import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
@@ -62,6 +70,8 @@ for ($i = 0; $i < count($search_results); $i++)
 		const apiKey = "<?php echo $api_key; ?>";
 
 		var app = null;
+
+		// add event listeners to each button and modal
 
 		const submitButton = document.getElementById("submitButton");
 		const signInForm = document.getElementById("signInForm");
@@ -113,7 +123,6 @@ for ($i = 0; $i < count($search_results); $i++)
 			submitInputButton.style.display = "none"
 			signInLoader.style.display = "inline-block";
 			errorAlert.style.display = "none";
-
 
 			const auth = getAuth();
 			signInWithEmailAndPassword(auth, email, password)
